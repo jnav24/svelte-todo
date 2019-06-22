@@ -1,4 +1,8 @@
 <script>
+    const ENTER_KEY = 13;
+    const ESCAPE_KEY = 27;
+
+    let newTodo = '';
 	let todos = [
 	    {
 	        id: 1,
@@ -19,6 +23,26 @@
             editing: false,
         },
 	];
+
+	const addTodo = (event) => {
+	    if (event.which === ENTER_KEY) {
+            todos = [
+                ...todos,
+                {
+                    id: getNewId(),
+                    completed: false,
+                    title: newTodo,
+                    editing: false,
+                }
+            ];
+            console.log(todos);
+            newTodo = '';
+	    }
+	};
+
+	const getNewId = () => {
+	    return Number(todos[todos.length - 1].id) + 1;
+	};
 </script>
 
 <style lang="scss">
@@ -123,7 +147,12 @@ button {
 <div class="container">
     <img src={'img/svelte-logo.svg'} alt="Svelte Logo" class="logo">
 
-    <input type="text" class="todo-input" placeholder="What needs to be done">
+    <input
+        on:keydown={addTodo}
+        bind:value={newTodo}
+        type="text"
+        class="todo-input"
+        placeholder="What needs to be done">
 
     {#each todos as todo}
     <div class="todo-item">
