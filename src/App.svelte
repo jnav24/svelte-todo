@@ -99,14 +99,44 @@ button {
 .active {
     background: salmon;
 }
-
-h1 {
-    color: red;
-
-    &:hover {
-        color: #000;
-    }
-}
 </style>
 
-<h1>Hello {name}!</h1>
+<div class="container">
+    <img src={'img/svelte-logo.svg'} alt="Svelte Logo" class="logo">
+
+    <input type="text" class="todo-input" placeholder="What needs to be done">
+
+    <div class="todo-item">
+        <div class="todo-item-left">
+            <input type="checkbox">
+
+            <div class="todo-item-label">Todo Title</div>
+        </div>
+
+        <div class="remove-item">
+            &times;
+        </div>
+    </div>
+
+    <div class="extra-container">
+        <div>
+            <label for="">
+                <input type="checkbox"> Check All
+            </label>
+        </div>
+
+        <div>items left</div>
+    </div>
+
+    <div class="extra-container">
+        <div>
+            <button>All</button>
+            <button>Active</button>
+            <button>Completed</button>
+        </div>
+
+        <div>
+            <button>Clear Completed</button>
+        </div>
+    </div>
+</div>
