@@ -35,13 +35,16 @@
                     editing: false,
                 }
             ];
-            console.log(todos);
             newTodo = '';
 	    }
 	};
 
 	const getNewId = () => {
-	    return Number(todos[todos.length - 1].id) + 1;
+	    if (todos.length) {
+	        return Number(todos[todos.length - 1].id) + 1;
+	    }
+
+	    return 1;
 	};
 </script>
 
