@@ -3,61 +3,72 @@
 </script>
 
 <style lang="scss">
-  .container {
-		max-width: 600px;
-		margin: 0 auto;
-	}
-	.logo {
-		display: block;
-		margin: 20px auto;
-		height: 75px;
-	}
-	.todo-input {
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: block;
+    margin: 20px auto;
+    height: 75px;
+}
+
+.todo-input {
     width: 100%;
     padding: 10px 18px;
     font-size: 18px;
     margin-bottom: 16px;
-  }
-  .todo-item {
+}
+
+.todo-item {
     margin-bottom: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     animation-duration: 0.3s;
-  }
-  .remove-item {
+}
+
+.remove-item {
     cursor: pointer;
     margin-left: 14px;
+
     &:hover {
-      color: black;
+        color: black;
     }
-  }
-  .todo-item-left { // later
+}
+
+.todo-item-left {
     display: flex;
     align-items: center;
-  }
-  .todo-item-label {
+}
+
+.todo-item-label {
     padding: 10px;
     border: 1px solid white;
     margin-left: 12px;
-  }
-  .todo-item-edit {
+}
+
+.todo-item-edit {
     font-size: 24px;
     color: #2c3e50;
     margin-left: 12px;
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc; //override defaults
+    border: 1px solid #ccc;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
     &:focus {
-      outline: none;
+        outline: none;
     }
-  }
-  .completed {
+}
+
+.completed {
     text-decoration: line-through;
     color: grey;
-  }
-  .extra-container {
+}
+
+.extra-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,31 +76,37 @@
     border-top: 1px solid lightgrey;
     padding-top: 14px;
     margin-bottom: 14px;
+
     input {
-      margin-right: 8px;
+        margin-right: 8px;
     }
-  }
-  button {
+}
+
+button {
     font-size: 14px;
     background-color: white;
     appearance: none;
-    &:hover {
-      background: salmon;
-    }
-    &:focus {
-      outline: none;
-    }
-  }
-  .active {
-    background: salmon;
-  }
 
-    h1 {
-        color: red;
-        &:hover {
-            color: #000;
-        }
-  }
+    &:hover {
+        background: salmon;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.active {
+    background: salmon;
+}
+
+h1 {
+    color: red;
+
+    &:hover {
+        color: #000;
+    }
+}
 </style>
 
 <h1>Hello {name}!</h1>
