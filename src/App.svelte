@@ -46,6 +46,10 @@
 
 	    return 1;
 	};
+
+	const deleteTodo = (id) => {
+	    todos = todos.filter((obj) => obj.id !== id);
+	};
 </script>
 
 <style lang="scss">
@@ -165,7 +169,7 @@ button {
             <div class="todo-item-label">{todo.title}</div>
         </div>
 
-        <div class="remove-item">
+        <div class="remove-item" on:click={() => deleteTodo(todo.id)}>
             &times;
         </div>
     </div>
