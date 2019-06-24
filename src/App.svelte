@@ -24,6 +24,8 @@
         },
 	];
 
+	$: todosRemaining = todos.filter((obj) => !obj.completed).length;
+
 	const addTodo = (event) => {
 	    if (event.which === ENTER_KEY) {
             todos = [
@@ -182,7 +184,7 @@ button {
             </label>
         </div>
 
-        <div>items left</div>
+        <div>{todosRemaining} items left</div>
     </div>
 
     <div class="extra-container">
