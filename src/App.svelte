@@ -59,6 +59,10 @@
 	        return todo;
 	    });
 	};
+
+	const clearCompleted = () => {
+	    todos = todos.filter((obj) => !obj.completed);
+	};
 </script>
 
 <style lang="scss">
@@ -202,7 +206,7 @@ button {
         </div>
 
         <div>
-            <button>Clear Completed</button>
+            <button on:click={() => clearCompleted()}>Clear Completed</button>
         </div>
     </div>
 </div>
