@@ -78,6 +78,22 @@
                 break;
         }
 	};
+
+	const editTodo = (todo) => {
+	    todo.editing = true;
+	    todos = todos;
+	};
+
+	const doneEdit = (todo) => {
+	    todo.editing = false;
+        todos = todos;
+	}
+
+	const doneEditKeydown = (e, todo) => {
+	    if (e.which === ENTER_KEY) {
+	        doneEdit(todo);
+	    }
+	};
 </script>
 
 <style lang="scss">
@@ -194,7 +210,11 @@ button {
         <div class="todo-item-left">
             <input type="checkbox" bind:checked={todo.completed}>
 
-            <div class="todo-item-label" class:completed={todo.completed}>{todo.title}</div>
+            {#if !todo.editing}
+                <div on:dblclick={() => editTodo(todo)} class="todo-item-label" class:completed={todo.completed}>{todo.title}</div>
+            {:else}
+                <input type="text" class="todo-item-edit" bind:value={todo.title} autofocus on:blur={() => doneEdit(todo)} on:keydown={() => doneEditKeydown(event, todo)}>
+            {/if}
         </div>
 
         <div class="remove-item" on:click={() => deleteTodo(todo.id)}>
