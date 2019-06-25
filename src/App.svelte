@@ -52,6 +52,13 @@
 	const deleteTodo = (id) => {
 	    todos = todos.filter((obj) => obj.id !== id);
 	};
+
+	const checkAllTodos = (e) => {
+	    todos = todos.map((todo) => {
+	        todo.completed = e.target.checked;
+	        return todo;
+	    });
+	};
 </script>
 
 <style lang="scss">
@@ -180,7 +187,7 @@ button {
     <div class="extra-container">
         <div>
             <label for="">
-                <input type="checkbox"> Check All
+                <input type="checkbox" on:change={checkAllTodos}> Check All
             </label>
         </div>
 
