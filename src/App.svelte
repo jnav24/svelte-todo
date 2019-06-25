@@ -2,7 +2,6 @@
     const ENTER_KEY = 13;
     const ESCAPE_KEY = 27;
 
-    let currentFilter = 'all';
     let newTodo = '';
 	let todos = [
 	    {
@@ -26,7 +25,7 @@
 	];
 
 	$: todosRemaining = todos.filter((obj) => !obj.completed).length;
-	$: filteredTodos = currentFilter === 'all' ? todos : currentFilter === 'active' ? todos.filter((obj) => !obj.completed) : todos.filter((obj) => obj.completed);
+	$: filteredTodos = todos;
 
 	const addTodo = (event) => {
 	    if (event.which === ENTER_KEY) {
@@ -67,11 +66,17 @@
 	};
 
 	const updateFilter = (value) => {
-	    const acceptableValues = ['all', 'active', 'completed'];
-
-	    if (acceptableValues.indexOf(value) > -1) {
-	        currentFilter = value;
-	    }
+        switch (value) {
+            case 'active':
+                filteredTodos = todos.filter((obj) => !obj.completed);
+                break;
+            case 'completed':
+                filteredTodos = todos.filter((obj) => obj.completed);
+                break;
+            default:
+                filteredTodos = todos;
+                break;
+        }
 	};
 </script>
 
