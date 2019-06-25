@@ -2,6 +2,7 @@
     const ENTER_KEY = 13;
     const ESCAPE_KEY = 27;
 
+    let currentFilter = 'all';
     let newTodo = '';
 	let todos = [
 	    {
@@ -25,6 +26,7 @@
 	];
 
 	$: todosRemaining = todos.filter((obj) => !obj.completed).length;
+	$: filteredTodos = currentFilter === 'all' ? todos : currentFilter === 'active' ? todos.filter((obj) => !obj.completed) : todos.filter((obj) => obj.completed);
 
 	const addTodo = (event) => {
 	    if (event.which === ENTER_KEY) {
@@ -62,6 +64,14 @@
 
 	const clearCompleted = () => {
 	    todos = todos.filter((obj) => !obj.completed);
+	};
+
+	const updateFilter = (value) => {
+	    const acceptableValues = ['all', 'active', 'completed'];
+
+	    if (acceptableValues.indexOf(value) > -1) {
+	        currentFilter = value;
+	    }
 	};
 </script>
 
@@ -174,7 +184,7 @@ button {
         class="todo-input"
         placeholder="What needs to be done">
 
-    {#each todos as todo}
+    {#each filteredTodos as todo}
     <div class="todo-item">
         <div class="todo-item-left">
             <input type="checkbox" bind:checked={todo.completed}>
@@ -200,9 +210,9 @@ button {
 
     <div class="extra-container">
         <div>
-            <button>All</button>
-            <button>Active</button>
-            <button>Completed</button>
+            <button on:click={() => updateFilter('all')}>All</button>
+            <button on:click={() => updateFilter('active')}>Active</button>
+            <button on:click={() => updateFilter('completed')}>Completed</button>
         </div>
 
         <div>
